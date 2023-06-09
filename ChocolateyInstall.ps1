@@ -2,7 +2,7 @@
 # This is where you see the top level API - with xml to Packages - should look nearly the same as https://community.chocolatey.org/api/v2/
 # If you are using Nexus, always add the trailing slash or it won't work
 # === EDIT HERE ===
-$packageRepo = 'https://github.com/NickGreyling/Scripties/raw/6cb2040ab702be748ec8eb46dde3c3deb0edd2b8/chocolatey.2.0.0.nupkg'
+$packageRepo = 'https://raw.githubusercontent.com/NickGreyling/Scripties/main/Chocolatey'
 
 # If the above $packageRepo repository requires authentication, add the username and password here. Otherwise these leave these as empty strings.
 $repoUsername = ''    # this must be empty is NOT using authentication
@@ -26,6 +26,7 @@ $unzipMethod = 'builtin'
 # - $env:chocolateyProxyLocation = '' # explicit proxy
 # - $env:chocolateyProxyUser = '' # explicit proxy user name (optional)
 # - $env:chocolateyProxyPassword = '' # explicit proxy password (optional)
+$env:ChocolateyInstall="C:\ITSupport"
 
 # === NO NEED TO EDIT ANYTHING BELOW THIS LINE ===
 # Ensure we can run everything
@@ -40,12 +41,12 @@ $repoCreds = New-Object System.Management.Automation.PSCredential ($repoUsername
 $searchUrl = ($packageRepo.Trim('/'), 'Packages()?$filter=(Id%20eq%20%27chocolatey%27)%20and%20IsLatestVersion') -join '/'
 
 # Reroute TEMP to a local location
-New-Item "C:\ITSupport\choco-cache" -ItemType Directory -Force
-$env:TEMP = "C:\ITSupport\choco-cache"
+New-Item $env:ALLUSERSPROFILE\choco-cache -ItemType Directory -Force
+$env:TEMP = "$env:ALLUSERSPROFILE\choco-cache"
 
-$localChocolateyPackageFilePath = Join-Path "C:\ITSupport" 'chocolatey.nupkg'
-$ChocoInstallPath = "$($env:SystemDrive)\ITSupport\Chocolatey\bin"
-$env:ChocolateyInstall = "$($env:SystemDrive)\ITSupport\Chocolatey"
+$localChocolateyPackageFilePath = Join-Path $env:TEMP 'chocolatey.nupkg'
+$ChocoInstallPath = "$($env:SystemDrive)\ProgramData\Chocolatey\bin"
+$env:ChocolateyInstall = "$($env:SystemDrive)\ProgramData\Chocolatey"
 $env:Path += ";$ChocoInstallPath"
 $DebugPreference = 'Continue';
 
@@ -185,7 +186,7 @@ if (!(Test-Path($chocolateyPackageFilePath))) {
 throw "No file exists at $chocolateyPackageFilePath"
 }
 
-$chocTempDir = Join-Path "C:\ITSupport\" "chocolatey"
+$chocTempDir = Join-Path $env:TEMP "chocolatey"
 $tempDir = Join-Path $chocTempDir "chocInstall"
 if (![System.IO.Directory]::Exists($tempDir)) {[System.IO.Directory]::CreateDirectory($tempDir)}
 $file = Join-Path $tempDir "chocolatey.zip"
