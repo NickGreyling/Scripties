@@ -2,7 +2,7 @@
 # This is where you see the top level API - with xml to Packages - should look nearly the same as https://community.chocolatey.org/api/v2/
 # If you are using Nexus, always add the trailing slash or it won't work
 # === EDIT HERE ===
-$packageRepo = 'https://github.com/NickGreyling/Scripties/blob/main/chocolatey.2.0.0.nupkg'
+$packageRepo = 'https://github.com/NickGreyling/Scripties/raw/6cb2040ab702be748ec8eb46dde3c3deb0edd2b8/chocolatey.2.0.0.nupkg'
 
 # If the above $packageRepo repository requires authentication, add the username and password here. Otherwise these leave these as empty strings.
 $repoUsername = ''    # this must be empty is NOT using authentication
