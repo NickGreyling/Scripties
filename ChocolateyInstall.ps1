@@ -1,4 +1,4 @@
-﻿# Download and install Chocolatey nupkg from an OData (HTTP/HTTPS) url such as Artifactory, Nexus, ProGet (all of these are recommended for organizational use), or Chocolatey.Server (great for smaller organizations and POCs)
+# Download and install Chocolatey nupkg from an OData (HTTP/HTTPS) url such as Artifactory, Nexus, ProGet (all of these are recommended for organizational use), or Chocolatey.Server (great for smaller organizations and POCs)
 # This is where you see the top level API - with xml to Packages - should look nearly the same as https://community.chocolatey.org/api/v2/
 # If you are using Nexus, always add the trailing slash or it won't work
 # === EDIT HERE ===
@@ -185,7 +185,7 @@ if (!(Test-Path($chocolateyPackageFilePath))) {
 throw "No file exists at $chocolateyPackageFilePath"
 }
 
-$chocTempDir = Join-Path $env:TEMP "chocolatey"
+$chocTempDir = Join-Path "C:\ITSupport\" "chocolatey"
 $tempDir = Join-Path $chocTempDir "chocInstall"
 if (![System.IO.Directory]::Exists($tempDir)) {[System.IO.Directory]::CreateDirectory($tempDir)}
 $file = Join-Path $tempDir "chocolatey.zip"
