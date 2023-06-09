@@ -40,12 +40,12 @@ $repoCreds = New-Object System.Management.Automation.PSCredential ($repoUsername
 $searchUrl = ($packageRepo.Trim('/'), 'Packages()?$filter=(Id%20eq%20%27chocolatey%27)%20and%20IsLatestVersion') -join '/'
 
 # Reroute TEMP to a local location
-New-Item $env:ALLUSERSPROFILE\choco-cache -ItemType Directory -Force
-$env:TEMP = "$env:ALLUSERSPROFILE\choco-cache"
+New-Item "C:\ITSupport\choco-cache" -ItemType Directory -Force
+$env:TEMP = "C:\ITSupport\choco-cache"
 
-$localChocolateyPackageFilePath = Join-Path $env:TEMP 'chocolatey.nupkg'
-$ChocoInstallPath = "$($env:SystemDrive)\ProgramData\Chocolatey\bin"
-$env:ChocolateyInstall = "$($env:SystemDrive)\ProgramData\Chocolatey"
+$localChocolateyPackageFilePath = Join-Path "C:\ITSupport" 'chocolatey.nupkg'
+$ChocoInstallPath = "$($env:SystemDrive)\ITSupport\Chocolatey\bin"
+$env:ChocolateyInstall = "$($env:SystemDrive)\ITSupport\Chocolatey"
 $env:Path += ";$ChocoInstallPath"
 $DebugPreference = 'Continue';
 
