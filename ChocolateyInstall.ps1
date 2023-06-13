@@ -2,7 +2,7 @@
 # This is where you see the top level API - with xml to Packages - should look nearly the same as https://community.chocolatey.org/api/v2/
 # If you are using Nexus, always add the trailing slash or it won't work
 # === EDIT HERE ===
-$packageRepo = 'https://raw.githubusercontent.com/NickGreyling/Scripties/6cb2040ab702be748ec8eb46dde3c3deb0edd2b8/chocolatey.2.0.0.nupkg'
+$packageRepo = 'https://github.com/NickGreyling/Scripties/blob/main'
 
 # If the above $packageRepo repository requires authentication, add the username and password here. Otherwise these leave these as empty strings.
 $repoUsername = ''    # this must be empty is NOT using authentication
@@ -26,7 +26,6 @@ $unzipMethod = 'builtin'
 # - $env:chocolateyProxyLocation = '' # explicit proxy
 # - $env:chocolateyProxyUser = '' # explicit proxy user name (optional)
 # - $env:chocolateyProxyPassword = '' # explicit proxy password (optional)
-$env:ChocolateyInstall="C:\ITSupport"
 
 # === NO NEED TO EDIT ANYTHING BELOW THIS LINE ===
 # Ensure we can run everything
