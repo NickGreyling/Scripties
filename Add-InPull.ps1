@@ -1,0 +1,6 @@
+#!ps
+$SID = Get-WmiObject -Class win32_computersystem |
+Select-Object -ExpandProperty Username |
+ForEach-Object { ([System.Security.Principal.NTAccount]$_).Translate([System.Security.Principal.SecurityIdentifier]).Value }
+$SearchLocations = "REGISTRY::HKU\$SID\Software\Microsoft\Office\Outlook\Addins", "REGISTRY::HKLM\Software\Microsoft\Office\Outlook\Addins", "HKEY_LOCAL_MACHINE\Software\Wow6432Node\Microsoft\Office\Outlook\Addins"
+$SearchLocations | % { Get-ChildItem $_ -ErrorAction SilentlyContinue } | % { Get-ItemProperty $_.PSPath } | sort LoadBehavior -Descending | ft FriendlyName, @{Label = "UnfriendlyName"; Expression = {$_.PSChildName}}, @{Label = "Status"; Expression = {$_.LoadBehavior -replace "3", "Enabled" -replace "2", "Inactive" -replace "0", "Disabled" }}
