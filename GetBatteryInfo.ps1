@@ -1,3 +1,5 @@
+#This script will return info about the currently installed battery, if one is present.
+
 #!ps
 if (-not (Test-Path "C:\ITSupport")) {
     New-Item -ItemType Directory -Force -Path C:\ITSupport | Out-Null
