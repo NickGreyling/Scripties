@@ -1,1 +1,0 @@
-(netsh wlan show profile) | Select-String '\: (.+)$' | % { $Name = $_.Matches.Groups[1]; $_ } | % { (netsh wlan show profile "$Name" key=clear) } | Select-String 'Key Content\W+\:(.+)$' | % { $Password = $_.Matches.Groups[1]; $_ } | % { [PSCustomObject]@{Network = $Name; Password = $Password } } | ft Network, Password -Autosize
